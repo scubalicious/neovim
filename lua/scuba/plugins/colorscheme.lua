@@ -16,11 +16,11 @@ return {
 
     require("tokyonight").setup({
       style = "moon",
-      transparent = transparent,
-      styles = {
-        sidebars = transparent and "transparent" or "dark",
-        floats = transparent and "transparent" or "dark",
-      },
+      -- transparent = transparent,
+      -- styles = {
+      --   sidebars = transparent and "transparent" or "dark",
+      --   floats = transparent and "transparent" or "dark",
+      -- },
       -- on_colors = function(colors)
       --   colors.bg = bg
       --   colors.bg_dark = transparent and colors.none or bg_dark
