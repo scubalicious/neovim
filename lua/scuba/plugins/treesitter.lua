@@ -46,7 +46,7 @@ return {
         "c",
         "r",
         "rnoweb",
-        -- "latex", --latex needs tree-sitter cli to be properly installed
+        "latex", --latex needs tree-sitter cli to be properly installed
         "csv",
         "python",
       },

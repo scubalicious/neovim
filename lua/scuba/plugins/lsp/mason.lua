@@ -28,15 +28,15 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "lua_ls",
-        -- "pyright",
+        "pyright",
         "r_language_server",
-        "pylsp",
+        -- "pylsp",
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
-        -- "prettier", -- prettier formatter
+        "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter
