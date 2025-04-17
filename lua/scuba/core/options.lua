@@ -3,7 +3,7 @@ vim.cmd("let g:netrw_liststyle = 3")
 local termfeatures = vim.g.termfeatures or {}
 termfeatures.osc52 = false
 vim.g.termfeatures = termfeatures
-vim.g.clipboard = 'osc52'
+vim.g.clipboard = "osc52"
 
 vim.o.clipboard = "unnamedplus"
 
@@ -68,3 +68,6 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- diagnostics
+vim.diagnostic.config({ virtual_text = true })
