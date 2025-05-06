@@ -107,6 +107,24 @@ return {
           filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
         })
       end,
+      ["pyright"] = function()
+        -- configure Pyright language server
+        lspconfig["pyright"].setup({
+          capabilities = capabilities,
+          filetypes = { "py", "python" },
+          settings = {
+            python = {
+              analysis = {
+                reportMissingImports = false,
+                -- typeCheckingMode = "basic",
+                -- autoImportCompletions = true,
+                -- useLibraryCodeForTypes = true,
+                -- diagnosticMode = "workspace",
+              },
+            },
+          },
+        })
+      end,
       ["emmet_ls"] = function()
         -- configure emmet language server
         lspconfig["emmet_ls"].setup({
