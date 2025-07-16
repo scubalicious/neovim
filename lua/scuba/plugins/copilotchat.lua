@@ -2,7 +2,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "zbirenbaum/copilot.lua" }, -- updated to use lua version
       { "nvim-lua/plenary.nvim" }, -- for curl, log and async functions
     },
     build = "make tiktoken", -- Only on MacOS or Linux
