@@ -69,5 +69,15 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- keep cursor 4 lines from top/bottom of screen
+opt.scrolloff = 4
+
 -- diagnostics
 vim.diagnostic.config({ virtual_text = true })
+
+-- Global border for all floating windows (Neovim 0.11+)
+vim.o.winborder = "rounded"
+
+-- Set default border for floating windows
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })

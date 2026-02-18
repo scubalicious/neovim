@@ -15,6 +15,7 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion with LuaSnip
     -- "rafamadriz/friendly-snippets", -- Moved as a dependency of LuaSnip for clarity
     "onsails/lspkind.nvim", -- vs-code like pictograms
+    "zbirenbaum/copilot-cmp", -- copilot completions for nvim-cmp
   },
   config = function()
     local cmp = require("cmp")
@@ -24,7 +25,14 @@ return {
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
+    -- setup copilot-cmp
+    require("copilot_cmp").setup()
+
     cmp.setup({
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
       completion = {
         completeopt = "menu,menuone,preview,noselect",
       },
@@ -64,6 +72,7 @@ return {
       }),
       -- sources for autocompletion in INSERT MODE
       sources = cmp.config.sources({
+        { name = "copilot", group_index = 2 },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
