@@ -26,12 +26,7 @@ return {
 
     mason_lspconfig.setup({
       -- list of servers for mason to install
-      ensure_installed = {
-        "lua_ls",
-        -- "pyright",
-        "r_language_server",
-        -- "pylsp",
-      },
+      ensure_installed = vim.fn.executable("R") == 1 and { "lua_ls", "r_language_server" } or { "lua_ls" },
     })
 
     mason_tool_installer.setup({
