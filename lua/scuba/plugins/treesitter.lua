@@ -1,75 +1,62 @@
+local parsers = {
+  "bash",
+  "c",
+  "cmake",
+  "css",
+  "csv",
+  "dockerfile",
+  "gitignore",
+  "go",
+  "graphql",
+  "groovy",
+  "html",
+  "java",
+  "javascript",
+  "json",
+  "latex",
+  "lua",
+  "make",
+  "markdown",
+  "markdown_inline",
+  "prisma",
+  "python",
+  "query",
+  "r",
+  "regex",
+  "rnoweb",
+  "sql",
+  "svelte",
+  "terraform",
+  "toml",
+  "tsx",
+  "typescript",
+  "vim",
+  "vimdoc",
+  "yaml",
+}
+
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufAdd", "BufReadPre", "BufNewFile" },
+  lazy = false,
   build = ":TSUpdate",
-  dependencies = {
-    "windwp/nvim-ts-autotag",
-  },
+  dependencies = { { "windwp/nvim-ts-autotag", opts = {} } },
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    require("nvim-treesitter").install(parsers)
 
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
-      indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      ignore_installed = { "rust" },
-      disable = { "rust" },
-      -- ensure these language parsers are installed
-      ensure_installed = {
-        "json",
-        "javascript",
-        "typescript",
-        "tsx",
-        "yaml",
-        "html",
-        "css",
-        "prisma",
-        "markdown",
-        "markdown_inline",
-        "svelte",
-        "graphql",
-        "bash",
-        "lua",
-        "vim",
-        "dockerfile",
-        "gitignore",
-        "query",
-        "vimdoc",
-        "c",
-        "r",
-        "rnoweb",
-        "latex", --latex needs tree-sitter cli to be properly installed
-        "csv",
-        "python",
-        "regex",
-        "terraform",
-        "sql",
-        "toml",
-        "java",
-        "groovy",
-        "go",
-        "make",
-        "cmake",
-      },
-      sync_install = false,
-      auto_install = false,
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "*",
+      callback = function()
+        if pcall(vim.treesitter.start) then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
     })
+
+    vim.keymap.set({ "n", "x" }, "<C-space>", function()
+      vim.treesitter.select("parent")
+    end, { desc = "Select parent syntax node" })
+    vim.keymap.set("x", "<BS>", function()
+      vim.treesitter.select("child")
+    end, { desc = "Select child syntax node" })
   end,
 }

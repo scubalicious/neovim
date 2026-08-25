@@ -18,7 +18,6 @@ return {
         end,
       },
       R_args = { "--quiet", "--no-save" },
-      R_path = "/usr/bin/",
       auto_start = "no",
       pipe_version = "magrittr",
       min_editor_width = 72,

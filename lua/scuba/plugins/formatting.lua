@@ -19,11 +19,13 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        -- python = { "isort", "black", "flake8" },
         python = { "ruff_format", "ruff_organize_imports" },
+        sh = { "shfmt" },
+        toml = { "taplo" },
+        zsh = { "shfmt" },
       },
       format_on_save = {
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
         timeout_ms = 1000,
       },
@@ -31,7 +33,7 @@ return {
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
         timeout_ms = 1000,
       })
