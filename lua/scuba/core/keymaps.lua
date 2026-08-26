@@ -4,6 +4,7 @@ local keymap = vim.keymap -- for conciseness
 
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
