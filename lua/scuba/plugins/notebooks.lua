@@ -33,7 +33,7 @@ return {
       require("iron.core").setup({
         config = {
           repl_definition = { python = require("iron.fts.python").ipython },
-          repl_open_cmd = require("iron.view").split.botright(15),
+          repl_open_cmd = require("iron.view").split.vertical.botright("40%"),
           scratch_repl = true,
         },
       })
