@@ -39,7 +39,18 @@ return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
   build = ":TSUpdate",
-  dependencies = { { "windwp/nvim-ts-autotag", opts = {} } },
+  dependencies = {
+    { "windwp/nvim-ts-autotag", opts = {} },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 3,
+        multiline_threshold = 10,
+        mode = "cursor",
+        separator = "─",
+      },
+    },
+  },
   config = function()
     require("nvim-treesitter").install(parsers)
 
