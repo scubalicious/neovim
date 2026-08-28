@@ -86,6 +86,12 @@ return {
   {
     "sheng-tse/jupynvim",
     version = "v0.4.5",
+    init = function()
+      -- Herdr proxies Kitty graphics but preserves VS Code's terminal environment.
+      if vim.env.HERDR_ENV == "1" and not vim.env.KITTY_WINDOW_ID then
+        vim.env.KITTY_WINDOW_ID = "1"
+      end
+    end,
     build = function(plugin)
       local install = loadfile(plugin.dir .. "/lua/jupynvim/install.lua")()
       install.run(plugin)
